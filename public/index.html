@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webinar Feedback & E-Certificate | Evolve Safety Consultive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <img src="assets/logo.png" alt="Evolve – Through Safety" class="logo">
+    <p class="eyebrow">Webinar Feedback &amp; E-Certificate</p>
+    <h1>“Emotional Intelligence at Work:<br>Transforming Emotions into Safety Excellence”</h1>
+    <p class="sub">Share your feedback and download your Certificate of Participation instantly.</p>
+  </header>
+
+  <main class="container">
+    <!-- STEP 1: Feedback form -->
+    <section id="form-section" class="card">
+      <div class="steps">
+        <span class="step active">1. Feedback</span>
+        <span class="step">2. Certificate</span>
+      </div>
+
+      <form id="feedback-form" novalidate>
+        <h2>Your details</h2>
+        <div class="grid">
+          <label class="full">
+            Full name <em>(exactly as it should appear on the certificate)</em>
+            <input name="name" id="name" required maxlength="60" autocomplete="name" placeholder="e.g. Priya Sharma">
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required maxlength="120" autocomplete="email" placeholder="you@example.com">
+          </label>
+          <label>
+            Phone <em>(optional)</em>
+            <input name="phone" type="tel" maxlength="20" autocomplete="tel" placeholder="+91 98765 43210">
+          </label>
+          <label>
+            Organization <em>(optional)</em>
+            <input name="organization" maxlength="120" autocomplete="organization">
+          </label>
+          <label>
+            Designation <em>(optional)</em>
+            <input name="designation" maxlength="80" autocomplete="organization-title">
+          </label>
+        </div>
+
+        <h2>Rate the webinar</h2>
+        <div class="ratings">
+          <div class="rating-row" data-field="overall">
+            <span>Overall experience</span>
+            <div class="stars" role="radiogroup" aria-label="Overall experience"></div>
+          </div>
+          <div class="rating-row" data-field="content">
+            <span>Content &amp; relevance</span>
+            <div class="stars" role="radiogroup" aria-label="Content and relevance"></div>
+          </div>
+          <div class="rating-row" data-field="speaker">
+            <span>Speaker / presentation</span>
+            <div class="stars" role="radiogroup" aria-label="Speaker"></div>
+          </div>
+        </div>
+
+        <fieldset class="recommend">
+          <legend>Would you recommend this webinar to colleagues?</legend>
+          <label class="pill"><input type="radio" name="recommend" value="yes"> Yes</label>
+          <label class="pill"><input type="radio" name="recommend" value="maybe"> Maybe</label>
+          <label class="pill"><input type="radio" name="recommend" value="no"> No</label>
+        </fieldset>
+
+        <label class="full">
+          What did you find most useful? <em>(optional)</em>
+          <textarea name="liked" rows="3" maxlength="1000"></textarea>
+        </label>
+        <label class="full">
+          Suggestions for future webinars <em>(optional)</em>
+          <textarea name="suggestions" rows="3" maxlength="1000"></textarea>
+        </label>
+
+        <p id="form-error" class="error" role="alert" hidden></p>
+        <button type="submit" class="btn primary" id="submit-btn">Submit &amp; Get Certificate</button>
+      </form>
+
+      <details class="returning">
+        <summary>Already submitted? Download your certificate again</summary>
+        <form id="lookup-form" class="lookup">
+          <input name="email" type="email" required placeholder="Email used in feedback">
+          <button type="submit" class="btn secondary">Find certificate</button>
+        </form>
+        <p id="lookup-error" class="error" role="alert" hidden></p>
+      </details>
+    </section>
+
+    <!-- STEP 2: Certificate -->
+    <section id="cert-section" class="card" hidden>
+      <div class="steps">
+        <span class="step done">1. Feedback</span>
+        <span class="step active">2. Certificate</span>
+      </div>
+      <h2 class="thanks">Thank you, <span id="thanks-name"></span>! 🎉</h2>
+      <p class="muted">Your Certificate of Participation is ready.</p>
+      <div class="preview"><canvas id="cert-canvas"></canvas></div>
+      <div class="actions">
+        <button class="btn primary" id="download-pdf">Download PDF</button>
+        <button class="btn secondary" id="download-png">Download Image (PNG)</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Evolve Safety Consultive</strong> · <a href="https://www.evolvesafety.in" target="_blank" rel="noopener">www.evolvesafety.in</a> · <a href="mailto:corporate.sales@evolvesafety.in">corporate.sales@evolvesafety.in</a> · 8870085776</p>
+  </footer>
+
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
