@@ -51,6 +51,15 @@ function tidyName(raw) {
   return name.toLowerCase().replace(/(^|[\s.'-])(\p{L})/gu, (m, sep, ch) => sep + ch.toUpperCase());
 }
 
+// ===== Storage =====
+// Demo mode: feedback is not stored anywhere yet.
+// TODO: replace with a Supabase insert, e.g.
+//   const { error } = await supabase.from('feedback').insert(data);
+//   if (error) throw new Error('Could not save your feedback. Please try again.');
+async function saveFeedback(data) {
+  console.info('Feedback (demo, not saved):', data);
+}
+
 // ===== Feedback submit =====
 const form = $('#feedback-form');
 const formError = $('#form-error');
@@ -81,35 +90,14 @@ form.addEventListener('submit', async (e) => {
   btn.disabled = true;
   btn.textContent = 'Submitting…';
   try {
-    const res = await fetch('/api/feedback', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const out = await res.json();
-    if (!out.ok) throw new Error(out.error || 'Something went wrong.');
-    await showCertificate(out.name);
+    data.submittedAt = new Date().toISOString();
+    await saveFeedback(data);
+    await showCertificate(data.name);
   } catch (err) {
-    showError(formError, err.message || 'Could not submit. Please check your connection and try again.');
+    showError(formError, err.message || 'Something went wrong. Please try again.');
   } finally {
     btn.disabled = false;
     btn.innerHTML = 'Submit &amp; Get Certificate';
-  }
-});
-
-// ===== Returning participant lookup =====
-$('#lookup-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const errEl = $('#lookup-error');
-  showError(errEl, '');
-  const email = e.target.email.value.trim();
-  try {
-    const res = await fetch('/api/certificate?email=' + encodeURIComponent(email));
-    const out = await res.json();
-    if (!out.ok) throw new Error(out.error);
-    await showCertificate(out.name);
-  } catch (err) {
-    showError(errEl, err.message || 'Could not find your certificate.');
   }
 });
 

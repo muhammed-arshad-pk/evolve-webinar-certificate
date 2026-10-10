@@ -165,11 +165,6 @@ input.invalid { border-color: var(--red); }
   font-size: .9rem;
 }
 
-.returning { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 16px; }
-.returning summary { cursor: pointer; color: var(--purple); font-weight: 500; font-size: .92rem; }
-.lookup { display: flex; gap: 10px; margin-top: 12px; }
-.lookup input { margin: 0; flex: 1; }
-
 .thanks { font-size: 1.4rem; margin-top: 16px; margin-bottom: 4px; }
 .muted { color: var(--muted); margin: 0 0 18px; }
 .preview {
@@ -188,5 +183,4 @@ footer a { color: var(--purple); }
   .card { padding: 20px 16px; }
   .grid { grid-template-columns: 1fr; }
   .rating-row { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .lookup { flex-direction: column; }
 }
