@@ -12,6 +12,15 @@ npm start
 
 Open http://localhost:3000
 
+## Deploy on Vercel
+
+1. Import the GitHub repo in Vercel.
+2. In the project, open **Storage → Create Database → Upstash (Redis)** and connect it to the project. This adds the `KV_REST_API_URL` / `KV_REST_API_TOKEN` environment variables.
+3. In **Settings → Environment Variables**, add `ADMIN_KEY` with your secret password.
+4. Redeploy.
+
+Without Redis, the server saves feedback to `data/feedback.jsonl`. That only works locally or on a host with a persistent disk.
+
 ## Configure
 
 - **Webinar date**: change `webinarDate` at the top of `public/app.js`.
@@ -21,7 +30,7 @@ Open http://localhost:3000
 ## Admin
 
 - Download all feedback as a CSV (opens in Excel): `http://localhost:3000/admin/feedback.csv?key=YOUR_ADMIN_KEY`
-- Raw data is stored in `data/feedback.jsonl` (one JSON object per line). Back this file up.
+- On Vercel, data lives in Upstash Redis. Locally, it is stored in `data/feedback.jsonl` (one JSON object per line).
 
 ## How it works
 
